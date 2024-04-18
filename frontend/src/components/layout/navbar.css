@@ -1,0 +1,20 @@
+/* Navbar container */
+.navbar-container {
+    background-color: #333; /* Background color of the navbar */
+    padding: 10px; /* Add padding to the navbar */
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Space evenly between links */
+    align-items: center; /* Center items vertically */
+  }
+  
+  /* Navbar links */
+  .navbar-container a {
+    color: white; /* Text color for the links */
+    text-decoration: none; /* Remove underlines from links */
+    margin-right: 20px; /* Add space between links */
+  }
+  
+  /* Remove margin from the last link */
+  .navbar-container a:last-child {
+    margin-right: 0;
+  }
