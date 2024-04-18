@@ -20,12 +20,13 @@ app.use(cookieParser());
 
 // Allow CORS from all origins and enable credentials (cookies)
 // Allow CORS from http://localhost:3000 and enable credentials (cookies)
-app.use(
+/*app.use(
     cors({
       origin: "http://localhost:3000",
       credentials: true,
     })
   );
+*/
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_CONNECT)
