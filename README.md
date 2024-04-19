@@ -8,4 +8,4 @@ MERN authentication app
 
 ## To install the necessary dependencies and run app : 
 - cd into server and run npm install then npm start to start the server
-- cd into frontend and run npm instal the npm start to start the frontend
+- cd into frontend and run npm install then npm start to start the frontend
