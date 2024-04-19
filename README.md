@@ -1,8 +1,9 @@
 # Project Name
-Coding mentor - Take home test for MERN authentication
+MERN authentication
+
 ## Description
 
-MERN authentication app 
+Simple MERN authentication app 
 
 ## Installation
 
