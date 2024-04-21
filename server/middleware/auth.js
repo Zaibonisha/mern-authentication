@@ -15,4 +15,17 @@ function auth(req, res, next) {
   }
 }
 
-module.exports = auth;
+function validateUsername(username) {
+  const words = username.trim().toLowerCase().split(/\s+/);
+  const disallowedWords = ["blue", "green", "yellow", "pink", "orange", "purple", "red", "brown", "black", "gray"];
+  
+  for (const word of words) {
+    if (disallowedWords.includes(word)) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+module.exports = { auth, validateUsername };

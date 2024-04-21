@@ -2,15 +2,14 @@ const router = require("express").Router();
 const User = require("../models/userModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
- 
-// register
+const { validateUsername } = require("../middleware/auth"); 
 
+// register
 router.post("/", async (req, res) => {
   try {
     const { email, password, username } = req.body;
 
     // validation
-
     if (!email || !password || !username)
       return res
         .status(400)
@@ -21,6 +20,10 @@ router.post("/", async (req, res) => {
         errorMessage: "Please enter a password of at least 6 characters.",
       });
 
+    // check username against disallowed words
+    if (!validateUsername(username)) 
+      return res.status(400).json({ errorMessage: "Invalid username." });
+
     const existingUser = await User.findOne({ email });
     if (existingUser)
       return res.status(400).json({
@@ -28,12 +31,10 @@ router.post("/", async (req, res) => {
       });
 
     // hash the password
-
     const salt = await bcrypt.genSalt();
     const passwordHash = await bcrypt.hash(password, salt);
 
     // save a new user account to the db
-
     const newUser = new User({
       email,
       passwordHash,
@@ -43,7 +44,6 @@ router.post("/", async (req, res) => {
     const savedUser = await newUser.save();
 
     // sign the token
-
     const token = jwt.sign(
       {
         user: savedUser._id,
@@ -52,7 +52,6 @@ router.post("/", async (req, res) => {
     );
 
     // send the token in a HTTP-only cookie
-
     res
       .cookie("token", token, {
         httpOnly: true,
